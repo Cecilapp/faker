@@ -1,0 +1,7 @@
+vendor/
+content/
+_site/
+.phpoole/
+layouts/
+phpoole.yml
+static/
