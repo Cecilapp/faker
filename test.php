@@ -36,3 +36,6 @@ for ($i=0; $i < $count; $i++) {
 	file_put_contents(CONTENT_DIR."/$title.md", $data);
 	echo '.';
 }
+
+// time
+printf("\nTime: %s seconds\n", round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 2));
