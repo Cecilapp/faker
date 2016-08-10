@@ -15,8 +15,8 @@ if (isset($options['c'])) {
 
 if (is_dir(CONTENT_DIR)) {
 	exec('rm -rf '.CONTENT_DIR);
-	mkdir(CONTENT_DIR);
 }
+mkdir(CONTENT_DIR);
 
 $faker = Faker\Factory::create('fr_FR');
 for ($i=0; $i < $count; $i++) {
