@@ -22,9 +22,9 @@ $faker = Faker\Factory::create('fr_FR');
 for ($i=0; $i < $count; $i++) {
 	$title = implode(' ', $faker->words(4));
 	$date = $faker->date();
-	$tags = implode(', ', $faker->words());
+	$tags = '['.implode(', ', $faker->shuffle(array('un', 'deux', 'trois'))).']';
 	$content = $faker->text(400);
-	
+
 	$data = '---'."\n"
 		.'title: '.$title."\n"
 		.'date: '.$date."\n"
