@@ -1,4 +1,8 @@
 {
+  "name": "phpoole/faker",
+  "description": "PHPoole faker",
+  "license": "MIT",
+  "type": "library",
   "bin": ["bin/faker.php"],
   "require": {
       "fzaninotto/faker": "^1.8"
