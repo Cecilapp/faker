@@ -1,5 +1,16 @@
+#!/usr/bin/env php
 <?php
-date_default_timezone_set('Europe/Paris');
+/**
+ * PHPoole is an easy and lightweight static website generator, written in PHP.
+ * @see http://phpoole.org
+ *
+ * @author Arnaud Ligny <arnaud@ligny.org>
+ * @license The MIT License (MIT)
+ *
+ * Copyright (c) Arnaud Ligny
+ */
+error_reporting(E_ALL ^ E_NOTICE);
+date_default_timezone_set('UTC');
 
 require_once 'vendor/autoload.php';
 
@@ -14,11 +25,15 @@ if (isset($options['c'])) {
 }
 
 if (is_dir(CONTENT_DIR)) {
+	printf("Deleting `content` directory...\n");
 	exec('rm -rf '.CONTENT_DIR);
 }
+printf("Creating `content` directory...\n");
 mkdir(CONTENT_DIR);
 
 $faker = Faker\Factory::create('fr_FR');
+
+printf("Creating `%s` pages", $count);
 for ($i=0; $i < $count; $i++) {
 	$title = implode(' ', $faker->words(4));
 	$date = $faker->date();
@@ -28,7 +43,7 @@ for ($i=0; $i < $count; $i++) {
 	$data = '---'."\n"
 		.'title: '.$title."\n"
 		.'date: '.$date."\n"
-		.'layout: index'."\n"
+		//.'layout: index.html'."\n"
 		.'tags: '.$tags."\n"
 		.'---'."\n"
 		.$content."\n";
@@ -39,3 +54,4 @@ for ($i=0; $i < $count; $i++) {
 
 // time
 printf("\nTime: %s seconds\n", round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 2));
+exit(0);

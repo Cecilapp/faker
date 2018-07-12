@@ -1,5 +1,6 @@
 {
-    "require": {
-        "fzaninotto/faker": "^1.6"
-    }
+  "bin": ["bin/faker.php"],
+  "require": {
+      "fzaninotto/faker": "^1.8"
+  }
 }
