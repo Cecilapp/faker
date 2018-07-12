@@ -3,7 +3,7 @@
   "description": "PHPoole faker",
   "license": "MIT",
   "type": "library",
-  "bin": ["bin/faker.php"],
+  "bin": ["bin/faker"],
   "require": {
       "fzaninotto/faker": "^1.8"
   }
