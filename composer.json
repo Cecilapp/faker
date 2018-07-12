@@ -1,6 +1,7 @@
 {
   "bin": ["bin/faker.php"],
   "require": {
-      "fzaninotto/faker": "^1.8"
+      "fzaninotto/faker": "^1.8",
+      "phpoole/theme-hyde": "^1.9"
   }
 }

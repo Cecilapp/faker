@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d87d8ffa95542e820229615711818de9",
+    "content-hash": "0a626b1a606456ed6b03142571f71eec",
     "packages": [
         {
             "name": "fzaninotto/faker",
@@ -55,6 +55,91 @@
                 "fixtures"
             ],
             "time": "2018-07-12T10:23:15+00:00"
+        },
+        {
+            "name": "phpoole/theme-hyde",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPoole/theme-hyde.git",
+                "reference": "dc778a83e09f5bc7d77604a65b80b01dc821d1e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPoole/theme-hyde/zipball/dc778a83e09f5bc7d77604a65b80b01dc821d1e4",
+                "reference": "dc778a83e09f5bc7d77604a65b80b01dc821d1e4",
+                "shasum": ""
+            },
+            "require": {
+                "phpoole/theme-installer": "^1.2"
+            },
+            "type": "phpoole-theme",
+            "extra": {
+                "name": "hyde",
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPoole Hyde theme",
+            "keywords": [
+                "Hyde",
+                "phpoole",
+                "theme"
+            ],
+            "time": "2018-01-15T23:07:05+00:00"
+        },
+        {
+            "name": "phpoole/theme-installer",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPoole/theme-installer.git",
+                "reference": "bcad945ccf467351dcbf2765c99394ba33d6bf2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPoole/theme-installer/zipball/bcad945ccf467351dcbf2765c99394ba33d6bf2f",
+                "reference": "bcad945ccf467351dcbf2765c99394ba33d6bf2f",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PHPoole\\PHPoole\\Composer\\PHPoolePlugin",
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PHPoole\\PHPoole\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arnaud Ligny",
+                    "email": "arnaud@ligny.org",
+                    "homepage": "http://narno.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Installer for PHPoole themes",
+            "keywords": [
+                "installer",
+                "phpoole",
+                "themes"
+            ],
+            "time": "2018-01-15T17:40:29+00:00"
         }
     ],
     "packages-dev": [],

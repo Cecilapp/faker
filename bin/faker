@@ -14,7 +14,7 @@ date_default_timezone_set('UTC');
 
 require_once 'vendor/autoload.php';
 
-const CONTENT_DIR = 'content';
+const CONTENT_DIR = './content/blog';
 
 $options = getopt('c::');
 
@@ -25,11 +25,13 @@ if (isset($options['c'])) {
 }
 
 if (is_dir(CONTENT_DIR)) {
-	printf("Deleting `content` directory...\n");
+	printf("Deleting `%s` directory...\n", CONTENT_DIR);
 	exec('rm -rf '.CONTENT_DIR);
 }
-printf("Creating `content` directory...\n");
-mkdir(CONTENT_DIR);
+printf("Creating `%s` directory...\n", CONTENT_DIR);
+if (!mkdir(CONTENT_DIR, 0777, true)) {
+    die('Error...');
+}
 
 $faker = Faker\Factory::create('fr_FR');
 
@@ -43,7 +45,6 @@ for ($i=0; $i < $count; $i++) {
 	$data = '---'."\n"
 		.'title: '.$title."\n"
 		.'date: '.$date."\n"
-		//.'layout: index.html'."\n"
 		.'tags: '.$tags."\n"
 		.'---'."\n"
 		.$content."\n";
