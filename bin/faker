@@ -14,29 +14,57 @@ date_default_timezone_set('UTC');
 
 require_once 'vendor/autoload.php';
 
-const CONTENT_DIR = './content/blog';
+const CONTENT_DIR = './content/';
+$dir = CONTENT_DIR;
+$pages = 10;
+$section = '';
+$delete = false;
 
-$options = getopt('c::');
+$options = getopt('help::', ['pages::', 'section::', 'delete::']);
 
-if (isset($options['c'])) {
-	$count = (int)$options['c'];
-} else {
-	$count = 10;
+//var_dump($options);
+//var_dump($argv);
+//die();
+
+if ($argv[1] == 'help') {
+	echo <<<EOT
+Create fake pages.
+
+Options:
+`--pages`: number of pages, integer.
+`--section`: section where to create pages, string.
+`--delete`: force content directory deletion, boolean.
+EOT;
+exit(0);
 }
 
-if (is_dir(CONTENT_DIR)) {
-	printf("Deleting `%s` directory...\n", CONTENT_DIR);
-	exec('rm -rf '.CONTENT_DIR);
+if (isset($options['pages'])) {
+	$pages = (int)$options['pages'];
 }
-printf("Creating `%s` directory...\n", CONTENT_DIR);
-if (!mkdir(CONTENT_DIR, 0777, true)) {
-    die('Error...');
+if (isset($options['section'])) {
+	$section = (string)$options['section'];
+}
+if (isset($options['delete']) && $options['delete'] === false) {
+	$delete = true;
+}
+
+if (is_string($section)) {
+ $dir .= $section;
+}
+if ($delete && is_dir($dir)) {
+	printf("Deleting `%s` directory...\n", $dir);
+	exec('rm -rf '.$dir);
+}
+printf("Creating `%s` directory...\n", $dir);
+if (!@mkdir($dir, 0777, true)) {
+	printf("`%s` directory exists...\n", $dir);
+	exit(1);
 }
 
 $faker = Faker\Factory::create('fr_FR');
 
-printf("Creating `%s` pages", $count);
-for ($i=0; $i < $count; $i++) {
+printf("Creating `%s` pages", $pages);
+for ($i=0; $i < $pages; $i++) {
 	$title = implode(' ', $faker->words(4));
 	$date = $faker->date();
 	$tags = '['.implode(', ', $faker->shuffle(array('un', 'deux', 'trois'))).']';
@@ -49,7 +77,7 @@ for ($i=0; $i < $count; $i++) {
 		.'---'."\n"
 		.$content."\n";
 
-	file_put_contents(CONTENT_DIR."/$title.md", $data);
+	file_put_contents(sprintf("%s/%s.md" , $dir, $title), $data);
 	echo '.';
 }
 
