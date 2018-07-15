@@ -1,8 +1,18 @@
 {
   "name": "phpoole/faker",
-  "description": "PHPoole faker",
+  "description": "CLI tool to generate fake content for a PHPoole project.",
+  "keywords": ["static", "website", "generator", "flat file", "markdown"],
+  "homepage": "https://github.com/PHPoole/faker",
   "license": "MIT",
   "type": "library",
+  "authors": [
+    {
+      "name": "Arnaud Ligny",
+      "email": "arnaud@ligny.org",
+      "homepage": "https://narno.org",
+      "role": "Developer"
+    }
+  ],
   "bin": ["bin/faker"],
   "require": {
       "fzaninotto/faker": "^1.8"
