@@ -1,16 +1,19 @@
-# PHPoole-faker
+# PHPoole/faker
 
-CLI tool to generate fake content for PHPoole.
+CLI tool to generate fake content for a PHPoole project.
 
 ## Installation
 
 ```shell
-composer install
+composer require phpoole/faker
 ```
 
 ## Usage
 
 ```shell
-php bin/faker -c=10
+php vendor/bin/faker --pages=100 --section=blog
 ```
-`-c` is optional. `10` by default.
+
+```shell
+php vendor/bin/faker help
+```
