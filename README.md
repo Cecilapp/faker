@@ -1,19 +1,19 @@
-# PHPoole/faker
+# cecil/faker
 
-CLI tool to generate fake content for a PHPoole project.
+CLI fake content generator for [Cecil](https://cecil.app).
 
 ## Installation
 
-```shell
-composer require phpoole/faker
+```bash
+composer require cecil/faker
 ```
 
 ## Usage
 
-```shell
+```bash
 php vendor/bin/faker --pages=100 --section=blog
 ```
 
-```shell
+```bash
 php vendor/bin/faker help
 ```
