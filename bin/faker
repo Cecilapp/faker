@@ -1,14 +1,5 @@
 #!/usr/bin/env php
 <?php
-/**
- * PHPoole is an easy and lightweight static website generator, written in PHP.
- * @see http://phpoole.org
- *
- * @author Arnaud Ligny <arnaud@ligny.org>
- * @license The MIT License (MIT)
- *
- * Copyright (c) Arnaud Ligny
- */
 error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set('UTC');
 
@@ -22,12 +13,8 @@ $delete = false;
 
 $options = getopt('help::', ['pages::', 'section::', 'delete::']);
 
-//var_dump($options);
-//var_dump($argv);
-//die();
-
 if ($argv[1] == 'help') {
-	echo <<<EOT
+    echo <<<EOT
 Create fake pages.
 
 Options:
@@ -35,50 +22,50 @@ Options:
 `--section`: section where to create pages, string.
 `--delete`: force content directory deletion, boolean.
 EOT;
-exit(0);
+    exit(0);
 }
 
 if (isset($options['pages'])) {
-	$pages = (int)$options['pages'];
+    $pages = (int)$options['pages'];
 }
 if (isset($options['section'])) {
-	$section = (string)$options['section'];
+    $section = (string)$options['section'];
 }
 if (isset($options['delete']) && $options['delete'] === false) {
-	$delete = true;
+    $delete = true;
 }
 
 if (is_string($section)) {
- $dir .= $section;
+    $dir .= $section;
 }
 if ($delete && is_dir($dir)) {
-	printf("Deleting `%s` directory...\n", $dir);
-	exec('rm -rf '.$dir);
+    printf("Deleting `%s` directory...\n", $dir);
+    exec('rm -rf '.$dir);
 }
 printf("Creating `%s` directory...\n", $dir);
 if (!@mkdir($dir, 0777, true)) {
-	printf("`%s` directory exists...\n", $dir);
-	exit(1);
+    printf("`%s` directory exists...\n", $dir);
+    exit(1);
 }
 
 $faker = Faker\Factory::create('fr_FR');
 
 printf("Creating `%s` pages", $pages);
 for ($i=0; $i < $pages; $i++) {
-	$title = implode(' ', $faker->words(4));
-	$date = $faker->date();
-	$tags = '['.implode(', ', $faker->shuffle(array('un', 'deux', 'trois'))).']';
-	$content = $faker->text(400);
+    $title = implode(' ', $faker->words(4));
+    $date = $faker->date();
+    $tags = '['.implode(', ', $faker->shuffle(array('un', 'deux', 'trois'))).']';
+    $content = $faker->text(400);
 
-	$data = '---'."\n"
-		.'title: '.$title."\n"
-		.'date: '.$date."\n"
-		.'tags: '.$tags."\n"
-		.'---'."\n"
-		.$content."\n";
+    $data = '---'."\n"
+        .'title: '.$title."\n"
+        .'date: '.$date."\n"
+        .'tags: '.$tags."\n"
+        .'---'."\n"
+        .$content."\n";
 
-	file_put_contents(sprintf("%s/%s.md" , $dir, $title), $data);
-	echo '.';
+    file_put_contents(sprintf("%s/%s.md" , $dir, $title), $data);
+    echo '.';
 }
 
 // time

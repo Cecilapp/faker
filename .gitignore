@@ -1,8 +1,8 @@
 vendor/
 content/
 _site/
-.phpoole/
+.cecil/
 layouts/
-phpoole.yml
+config.yml
 static/
 themes/
