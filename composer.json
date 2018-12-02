@@ -1,6 +1,6 @@
 {
   "name": "cecil/faker",
-  "description": "CLI tool to generate fake content for a Cecil project.",
+  "description": "CLI fake content generator for Cecil.",
   "keywords": [
     "static",
     "website",
