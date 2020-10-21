@@ -1,7 +1,5 @@
 # cecil/faker
 
-[![Latest Stable Version](https://poser.pugx.org/cecil/faker/v/stable)](https://packagist.org/packages/cecil/faker)
-
 > CLI fake content generator for [Cecil](https://cecil.app).
 
 ## Installation
