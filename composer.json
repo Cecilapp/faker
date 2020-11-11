@@ -1,13 +1,7 @@
 {
   "name": "cecil/faker",
   "description": "CLI fake content generator for Cecil.",
-  "keywords": [
-    "static",
-    "website",
-    "generator",
-    "flat file",
-    "markdown"
-  ],
+  "keywords": ["static", "website", "generator", "flat file", "markdown"],
   "homepage": "https://github.com/Cecilapp/faker",
   "license": "MIT",
   "type": "library",
@@ -23,6 +17,6 @@
     "bin/faker"
   ],
   "require": {
-    "fzaninotto/faker": "^1.8"
+    "fzaninotto/faker": "^1.9"
   }
 }
