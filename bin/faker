@@ -5,7 +5,7 @@ date_default_timezone_set('UTC');
 
 require_once 'vendor/autoload.php';
 
-const CONTENT_DIR = './content/';
+const CONTENT_DIR = './pages/';
 $dir = CONTENT_DIR;
 $pages = 10;
 $section = '';
