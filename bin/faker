@@ -7,26 +7,26 @@ require_once 'vendor/autoload.php';
 
 const CONTENT_DIR = './pages/';
 $dir = CONTENT_DIR;
-$pages = 10;
+$number = 10;
 $section = '';
 $delete = false;
 
-$options = getopt('help::', ['pages::', 'section::', 'delete::']);
+$options = getopt('help::', ['number::', 'section::', 'delete::']);
 
 if ($argv[1] == 'help') {
     echo <<<EOT
 Create fake pages.
 
 Options:
-`--pages`: number of pages, integer.
-`--section`: section where to create pages, string.
-`--delete`: force content directory deletion, boolean.
+`--number`: number of pages (integer).
+`--section`: section where to create pages (string).
+`--delete`: force content directory deletion (boolean).
 EOT;
     exit(0);
 }
 
-if (isset($options['pages'])) {
-    $pages = (int)$options['pages'];
+if (isset($options['number'])) {
+    $number = (int)$options['number'];
 }
 if (isset($options['section'])) {
     $section = (string)$options['section'];
@@ -48,8 +48,8 @@ if (@mkdir($dir, 0777, true)) {
 
 $faker = Faker\Factory::create('fr_FR');
 
-printf("Creating `%s` pages", $pages);
-for ($i=0; $i < $pages; $i++) {
+printf("Creating `%s` pages", $number);
+for ($i=0; $i < $number; $i++) {
     $title = implode(' ', $faker->words(4));
     $date = $faker->date();
     $tagsArray = $faker->randomElements(['Tag 1', 'Tag 2', 'Tag 3'], $faker->numberBetween(1, 3));

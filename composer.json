@@ -17,6 +17,6 @@
     "bin/faker"
   ],
   "require": {
-    "fzaninotto/faker": "^1.9"
+    "fakerphp/faker": "^1.20"
   }
 }

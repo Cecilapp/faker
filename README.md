@@ -11,7 +11,7 @@ composer require cecil/faker
 ## Usage
 
 ```bash
-php vendor/cecil/faker/bin/faker --pages=100 --section=blog
+php vendor/cecil/faker/bin/faker --number=100 --section=blog
 ```
 
 ```bash
