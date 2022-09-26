@@ -7,20 +7,21 @@ require_once 'vendor/autoload.php';
 
 const CONTENT_DIR = './pages/';
 $dir = CONTENT_DIR;
-$number = 10;
+$number = 0;
 $section = '';
-$delete = false;
+$clear = false;
 
-$options = getopt('help::', ['number::', 'section::', 'delete::']);
+$options = getopt('help::', ['number::', 'section::', 'clear::']);
 
-if ($argv[1] == 'help') {
+if (!isset($argv[1]) || $argv[1] == 'help') {
     echo <<<EOT
-Create fake pages.
+Create fake pages for Cecil (https://cecil.app).
 
 Options:
-`--number`: number of pages (integer).
-`--section`: section where to create pages (string).
-`--delete`: force content directory deletion (boolean).
+`--number`: number of pages (optional, "10" by default).
+`--section`: section where to create pages (optional).
+`--locale`: language locale ("fr_FR" by default).
+`--clear`: remove directory before pages creation (false by default).
 EOT;
     exit(0);
 }
@@ -31,30 +32,34 @@ if (isset($options['number'])) {
 if (isset($options['section'])) {
     $section = (string)$options['section'];
 }
-if (isset($options['delete']) && $options['delete'] === false) {
-    $delete = true;
+if (isset($options['clear']) && $options['clear'] === false) {
+    $clear = true;
 }
 
 if (is_string($section)) {
     $dir .= $section;
 }
-if ($delete && is_dir($dir)) {
-    printf("Deleting `%s` directory...\n", $dir);
+if ($clear && is_dir($dir)) {
+    printf("Removing `%s` directory...\n", $dir);
     exec('rm -rf '.$dir);
+}
+if ($number === 0) {
+    exit(0);
 }
 if (@mkdir($dir, 0777, true)) {
     printf("Creating `%s` directory...\n", $dir);
 }
 
-$faker = Faker\Factory::create('fr_FR');
+$faker = Faker\Factory::create();
 
 printf("Creating `%s` pages", $number);
+$tagsArray = $faker->words(10);
 for ($i=0; $i < $number; $i++) {
-    $title = implode(' ', $faker->words(4));
+    $title = $faker->words(4, true);
     $date = $faker->date();
-    $tagsArray = $faker->randomElements(['Tag 1', 'Tag 2', 'Tag 3'], $faker->numberBetween(1, 3));
-    $tags = '['.implode(', ', $tagsArray).']';
-    $content = $faker->text(400);
+    $tagsRandom = $faker->randomElements($tagsArray, $faker->numberBetween(1, 3));
+    $tags = '['.implode(', ', $tagsRandom).']';
+    $content = $faker->paragraphs(4, true);
 
     $data = '---'."\n"
         .'title: '.$title."\n"
