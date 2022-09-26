@@ -1,6 +1,6 @@
 # cecil/faker
 
-> CLI fake content generator for [Cecil](https://cecil.app).
+_faker_ is CLI to create fake pages for [Cecil](https://cecil.app).
 
 ## Installation
 
@@ -11,9 +11,9 @@ composer require cecil/faker
 ## Usage
 
 ```bash
-php vendor/cecil/faker/bin/faker --number=100 --section=blog
+php vendor/bin/faker --number=100 --section=blog
 ```
 
 ```bash
-php vendor/cecil/faker/bin/faker help
+php vendor/bin/faker help
 ```
