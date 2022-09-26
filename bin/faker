@@ -9,9 +9,11 @@ const CONTENT_DIR = './pages/';
 $dir = CONTENT_DIR;
 $number = 0;
 $section = '';
+$image = false;
+$img = '';
 $clear = false;
 
-$options = getopt('help::', ['number::', 'section::', 'clear::']);
+$options = getopt('help::', ['number::', 'section::', 'image::', 'clear::']);
 
 if (!isset($argv[1]) || $argv[1] == 'help') {
     echo <<<EOT
@@ -20,7 +22,7 @@ Create fake pages for Cecil (https://cecil.app).
 Options:
 `--number`: number of pages (optional, "10" by default).
 `--section`: section where to create pages (optional).
-`--locale`: language locale ("fr_FR" by default).
+`--image`: add an image to each page (optional).
 `--clear`: remove directory before pages creation (false by default).
 EOT;
     exit(0);
@@ -31,6 +33,9 @@ if (isset($options['number'])) {
 }
 if (isset($options['section'])) {
     $section = (string)$options['section'];
+}
+if (isset($options['image']) && $options['image'] === false) {
+    $image = true;
 }
 if (isset($options['clear']) && $options['clear'] === false) {
     $clear = true;
@@ -44,6 +49,7 @@ if ($clear && is_dir($dir)) {
     exec('rm -rf '.$dir);
 }
 if ($number === 0) {
+    print("Use `--number=X` option to specify the number of pages to generate.");
     exit(0);
 }
 if (@mkdir($dir, 0777, true)) {
@@ -60,13 +66,17 @@ for ($i=0; $i < $number; $i++) {
     $tagsRandom = $faker->randomElements($tagsArray, $faker->numberBetween(1, 3));
     $tags = '['.implode(', ', $tagsRandom).']';
     $content = $faker->paragraphs(4, true);
+    if ($image) {
+        $img = "\n![placeholder](https://via.placeholder.com/640x480.jpeg?text=".$faker->words(2, true).")\n";
+    }
 
-    $data = '---'."\n"
-        .'title: '.$title."\n"
-        .'date: '.$date."\n"
-        .'tags: '.$tags."\n"
-        .'---'."\n"
-        .$content."\n";
+    $data = "---\n"
+        ."title: $title\n"
+        ."date: $date\n"
+        ."tags: $tags\n"
+        ."---\n"
+        ."$content\n"
+        ."$img";
 
     file_put_contents(sprintf("%s/%s.md" , $dir, $title), $data);
     echo '.';
