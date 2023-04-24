@@ -10,10 +10,11 @@ composer require cecil/faker
 
 ## Usage
 
-```bash
-php vendor/bin/faker --number=100 --section=blog
-```
 
 ```bash
 php vendor/bin/faker help
+```
+
+```bash
+php vendor/bin/faker --number=100 --section=blog --image --clear
 ```
