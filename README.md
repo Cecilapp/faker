@@ -10,7 +10,6 @@ composer require cecil/faker
 
 ## Usage
 
-
 ```bash
 php vendor/bin/faker help
 ```
