@@ -5,8 +5,7 @@ date_default_timezone_set('UTC');
 
 require_once 'vendor/autoload.php';
 
-const CONTENT_DIR = './pages/';
-$dir = CONTENT_DIR;
+$dir = './pages/';
 $number = 0;
 $section = '';
 $image = false;
@@ -19,11 +18,14 @@ if (!isset($argv[1]) || $argv[1] == 'help') {
     echo <<<EOT
 Create fake pages for Cecil (https://cecil.app).
 
+Usage:
+  php vendor/bin/faker [options]
+
 Options:
-`--number`: number of pages (integer, required).
-`--section`: section where to create pages (string, empty by default).
-`--image`: add an image to each page (boolean, false by default).
-`--clear`: remove directory before pages creation (boolean, false by default).
+  --number   Set number of pages (integer, required)
+  --section  Set section where to create pages (string, empty by default)
+  --image    Add an image to each page
+  --clear    Remove directory before pages creation
 EOT;
     exit(0);
 }
