@@ -1,8 +1,11 @@
 vendor/
-content/
-_site/
 .cecil/
-layouts/
+.cache/
+cecil.yml
 config.yml
+content/
+pages/
 static/
+layouts/
 themes/
+_site/
