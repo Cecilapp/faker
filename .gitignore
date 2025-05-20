@@ -3,7 +3,6 @@ vendor/
 .cache/
 cecil.yml
 config.yml
-content/
 pages/
 static/
 layouts/
